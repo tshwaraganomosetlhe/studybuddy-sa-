@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="theme-color" content="#6d4aff" />
+<title>StudyBuddy SA</title>
+<style>
+:root{--bg:#f5f4fb;--card:#fff;--ink:#1d1933;--muted:#77728a;--purple:#6d4aff;--purple2:#8d78ff;--line:#e9e5f4;--green:#16834b}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);font:16px/1.5 system-ui,-apple-system,Segoe UI,sans-serif;color:var(--ink)}
+header{background:linear-gradient(120deg,#5634d9,#8b72ff);color:white;padding:24px max(20px,calc((100vw - 1050px)/2));}
+header .brand{font-weight:800;font-size:1.25rem;letter-spacing:.2px}header p{margin:6px 0 0;color:#eee9ff}
+main{max-width:1050px;margin:0 auto;padding:22px 18px 50px}.welcome{display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+h1{font-size:1.65rem;margin:0 0 4px}.muted{color:var(--muted)}.tag{background:#eee9ff;color:#5737d8;padding:6px 10px;border-radius:999px;font-size:.8rem;font-weight:700}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin:22px 0}.stat,.panel,.tile{background:var(--card);border:1px solid var(--line);border-radius:18px;padding:16px;box-shadow:0 5px 18px #25144a08}
+.stat strong{display:block;font-size:1.45rem}.stat span{color:var(--muted);font-size:.85rem}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin:18px 0}nav button,.btn{border:0;border-radius:12px;padding:10px 15px;font-weight:700;cursor:pointer;background:#e9e4f8;color:#51466b}
+nav button.active,.btn.primary{background:var(--purple);color:white}button:focus-visible{outline:3px solid #b8aaff;outline-offset:2px}
+.layout{display:grid;grid-template-columns:1.35fr .85fr;gap:16px}.panel h2{margin:0 0 12px;font-size:1.15rem}.tiles{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}
+.tile{cursor:pointer;transition:transform .15s}.tile:hover{transform:translateY(-2px)}.emoji{font-size:1.6rem}.tile h3{margin:6px 0 2px}.tile p{margin:0;color:var(--muted);font-size:.88rem}
+.topic{padding:13px 0;border-bottom:1px solid var(--line)}.topic:last-child{border-bottom:0}.topic h3{margin:0 0 4px;font-size:1rem}.topic p{margin:0;color:#57516b}
+.quizq{padding:14px 0;border-bottom:1px solid var(--line)}.quizq:last-child{border-bottom:0}.quizq p{font-weight:700;margin:0 0 9px}.answers{display:grid;gap:7px}.answers button{text-align:left;background:#f5f2ff;border:1px solid #e2dcf7;padding:10px;border-radius:10px;cursor:pointer}.answers button.selected{border:2px solid var(--purple);background:#eee9ff}.answers button.correct{background:#e4f6eb;border-color:#61b885}.answers button.wrong{background:#fff0ef;border-color:#df8c83}
+.feedback{font-size:.9rem;margin-top:8px;font-weight:600}.result{background:#f0ebff;padding:14px;border-radius:14px;margin-top:12px}.hidden{display:none}.small{font-size:.82rem}.footer{margin-top:22px;color:var(--muted);font-size:.8rem;text-align:center}
+@media(max-width:720px){.layout{grid-template-columns:1fr}.stats{gap:8px}.stat{padding:12px}.stat strong{font-size:1.2rem}.tiles{grid-template-columns:1fr 1fr}main{padding:18px 13px 40px}}
+@media(max-width:380px){.tiles{grid-template-columns:1fr}.stats{grid-template-columns:1fr}}
+</style>
+</head>
+<body>
+<header><div class="brand">📚 StudyBuddy SA</div><p>Study smarter. Prepare better. Reach your goals.</p></header>
+<main>
+<div class="welcome"><div><h1>Hey, learner! 👋</h1><div class="muted">Your study space is ready.</div></div><span class="tag">GRADE 10 • BETA</span></div>
+<section class="stats">
+<div class="stat"><strong id="doneStat">0</strong><span>Quizzes completed</span></div>
+<div class="stat"><strong id="scoreStat">—</strong><span>Best score</span></div>
+<div class="stat"><strong>CAT</strong><span>Your first subject</span></div>
+</section>
+<nav aria-label="Main navigation">
+<button class="active" data-page="home">🏠 Home</button><button data-page="notes">📖 Notes</button><button data-page="quiz">🧠 Quiz</button><button data-page="progress">📈 Progress</button>
+</nav>
+<section id="homePage">
+<div class="layout">
+<div class="panel"><h2>📘 Your subjects</h2><div class="tiles">
+<div class="tile" onclick="showPage('notes')"><div class="emoji">💻</div><h3>CAT</h3><p>Computer Applications Technology</p></div>
+<div class="tile" onclick="showPage('quiz')"><div class="emoji">🎯</div><h3>Practice quiz</h3><p>Test your knowledge</p></div>
+<div class="tile" onclick="showPage('notes')"><div class="emoji">📝</div><h3>Study notes</h3><p>Quick revision topics</p></div>
+<div class="tile" onclick="showPage('progress')"><div class="emoji">🏆</div><h3>My progress</h3><p>See your results</p></div>
+</div></div>
+<aside class="panel"><h2>⚡ Quick study tip</h2><p>Study one topic for 25 minutes, take a 5-minute break, then test yourself without looking at your notes.</p><button class="btn primary" onclick="showPage('quiz')">Start a quiz</button></aside>
+</div>
+</section>
+<section id="notesPage" class="panel hidden"><h2>📖 Grade 10 CAT — Quick notes</h2>
+<div class="topic"><h3>1. Hardware</h3><p>Hardware is the physical parts of a computer that you can touch. Examples: keyboard, monitor, CPU, mouse and printer.</p></div>
+<div class="topic"><h3>2. CPU</h3><p>The Central Processing Unit executes instructions and processes data. The control unit directs operations; the ALU performs arithmetic and logical operations.</p></div>
+<div class="topic"><h3>3. RAM</h3><p>Random Access Memory temporarily stores programs and data currently in use. It is volatile, meaning its contents are lost when power is switched off.</p></div>
+<div class="topic"><h3>4. Storage</h3><p>SSD and HDD store files and applications long-term. Storage keeps data when the computer is switched off.</p></div>
+<div class="topic"><h3>5. Operating system</h3><p>An operating system manages hardware and software resources and provides an interface for users. Examples include Windows, macOS, Linux and Android.</p></div>
+<div class="topic"><h3>6. Networks</h3><p>A LAN covers a small area such as a school. A WAN connects networks over larger geographical areas. A router forwards data between networks.</p></div>
+<div class="topic"><h3>7. Internet safety</h3><p>Use strong unique passwords, enable two-factor authentication, check links before opening them and never share private information with strangers.</p></div>
+<button class="btn primary" onclick="showPage('quiz')">Practice these notes →</button></section>
+<section id="quizPage" class="panel hidden"><h2>🧠 CAT starter quiz</h2><p class="muted">5 questions • 1 mark each • Choose one answer per question.</p><div id="questions"></div><button class="btn primary" id="submitQuiz">Submit answers</button><div id="quizResult" class="result hidden"></div></section>
+<section id="progressPage" class="panel hidden"><h2>📈 Your progress</h2><p>Results are saved in this browser on this device.</p><div id="history"></div><button class="btn" onclick="clearProgress()">Clear saved progress</button></section>
+<div class="footer">StudyBuddy SA • First working prototype • Your progress stays on this device</div>
+</main>
+<script>
+const questions=[
+{q:"Which component temporarily stores data currently being used?",a:["SSD","RAM","Keyboard","Printer"],correct:1,why:"RAM holds active data temporarily and is volatile."},
+{q:"What does CPU stand for?",a:["Computer Power Utility","Central Processing Unit","Central Program User","Control Processing Upload"],correct:1,why:"CPU means Central Processing Unit."},
+{q:"Which is an example of hardware?",a:["Windows","Microsoft Word","Mouse","A website"],correct:2,why:"A mouse is a physical device."},
+{q:"Which network usually covers a school or office building?",a:["LAN","WAN","GPS","HTML"],correct:0,why:"A LAN covers a limited local area."},
+{q:"What is the safest action when you receive a suspicious link?",a:["Open it quickly","Send it to everyone","Check the sender and link first","Enter your password"],correct:2,why:"Verify links and senders before opening; never enter credentials on suspicious pages."}
+];
+let chosen=Array(questions.length).fill(null), submitted=false;
+function showPage(page){document.querySelectorAll("main>section[id$='Page']").forEach(s=>s.classList.add("hidden"));document.getElementById(page+"Page").classList.remove("hidden");document.querySelectorAll("nav button").forEach(b=>b.classList.toggle("active",b.dataset.page===page));if(page==="progress")renderHistory();if(page==="quiz")renderQuiz();}
+document.querySelectorAll("nav button").forEach(b=>b.addEventListener("click",()=>showPage(b.dataset.page)));
+function renderQuiz(){const root=document.getElementById("questions");root.innerHTML="";questions.forEach((q,i)=>{let div=document.createElement("div");div.className="quizq";div.innerHTML=`<p>${i+1}. ${q.q}</p><div class="answers">${q.a.map((a,j)=>`<button ${chosen[i]===j?'class="selected"':''} ${submitted&&j===q.correct?'correct':''} ${submitted&&chosen[i]===j&&j!==q.correct?'wrong':''} data-q="${i}" data-a="${j}" ${submitted?'disabled':''}>${String.fromCharCode(65+j)}. ${a}</button>`).join("")}</div>${submitted?`<div class="feedback">${chosen[i]===q.correct?'✅ Correct!':'❌ '+q.why}</div>`:""}`;root.appendChild(div);});root.querySelectorAll("button[data-q]").forEach(b=>b.addEventListener("click",()=>{if(submitted)return;chosen[+b.dataset.q]=+b.dataset.a;renderQuiz();}));document.getElementById("submitQuiz").disabled=submitted;document.getElementById("quizResult").classList.toggle("hidden",!submitted);}
+document.getElementById("submitQuiz").addEventListener("click",()=>{if(chosen.some(x=>x===null)){alert("Please answer all 5 questions first.");return;}submitted=true;let score=questions.reduce((n,q,i)=>n+(chosen[i]===q.correct?1:0),0);let history=JSON.parse(localStorage.getItem("studybuddyResults")||"[]");history.unshift({date:new Date().toLocaleString(),score,total:questions.length});localStorage.setItem("studybuddyResults",JSON.stringify(history.slice(0,20)));renderQuiz();let r=document.getElementById("quizResult");r.classList.remove("hidden");r.innerHTML=`<strong>You scored ${score}/${questions.length} (${score*20}%)</strong><p>${score>=4?"Great work! Keep revising.":"Good start! Review the notes and try again."}</p><button class="btn" onclick="resetQuiz()">Try again</button>`;updateStats();});
+function resetQuiz(){chosen=Array(questions.length).fill(null);submitted=false;renderQuiz();}
+function getHistory(){return JSON.parse(localStorage.getItem("studybuddyResults")||"[]");}
+function updateStats(){let h=getHistory();document.getElementById("doneStat").textContent=h.length;document.getElementById("scoreStat").textContent=h.length?Math.max(...h.map(x=>x.score*20))+"%":"—";}
+function renderHistory(){let h=getHistory(),el=document.getElementById("history");el.innerHTML=h.length?h.map(x=>`<div class="topic"><strong>${x.score}/${x.total} (${x.score*20}%)</strong><div class="muted small">${x.date}</div></div>`).join(""):"<p>No quizzes completed yet. Take your first quiz!</p>";}
+function clearProgress(){if(confirm("Clear all saved quiz results on this device?")){localStorage.removeItem("studybuddyResults");updateStats();renderHistory();}}
+updateStats();renderQuiz();
+</script>
+</body>
+</html>
